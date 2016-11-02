@@ -1,0 +1,305 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A783EFC21DC9D44000319472 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A783EFC11DC9D44000319472 /* main.m */; };
+		A783EFC51DC9D44000319472 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A783EFC41DC9D44000319472 /* AppDelegate.m */; };
+		A783EFC81DC9D44000319472 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A783EFC71DC9D44000319472 /* ViewController.m */; };
+		A783EFCB1DC9D44100319472 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A783EFC91DC9D44100319472 /* Main.storyboard */; };
+		A783EFCD1DC9D44100319472 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A783EFCC1DC9D44100319472 /* Assets.xcassets */; };
+		A783EFD01DC9D44100319472 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A783EFCE1DC9D44100319472 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A783EFBD1DC9D44000319472 /* TosTov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TosTov.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A783EFC11DC9D44000319472 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A783EFC31DC9D44000319472 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A783EFC41DC9D44000319472 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A783EFC61DC9D44000319472 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A783EFC71DC9D44000319472 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A783EFCA1DC9D44100319472 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A783EFCC1DC9D44100319472 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A783EFCF1DC9D44100319472 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A783EFD11DC9D44100319472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A783EFBA1DC9D44000319472 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A783EFB41DC9D43F00319472 = {
+			isa = PBXGroup;
+			children = (
+				A783EFBF1DC9D44000319472 /* TosTov */,
+				A783EFBE1DC9D44000319472 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A783EFBE1DC9D44000319472 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A783EFBD1DC9D44000319472 /* TosTov.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A783EFBF1DC9D44000319472 /* TosTov */ = {
+			isa = PBXGroup;
+			children = (
+				A783EFC31DC9D44000319472 /* AppDelegate.h */,
+				A783EFC41DC9D44000319472 /* AppDelegate.m */,
+				A783EFC61DC9D44000319472 /* ViewController.h */,
+				A783EFC71DC9D44000319472 /* ViewController.m */,
+				A783EFC91DC9D44100319472 /* Main.storyboard */,
+				A783EFCC1DC9D44100319472 /* Assets.xcassets */,
+				A783EFCE1DC9D44100319472 /* LaunchScreen.storyboard */,
+				A783EFD11DC9D44100319472 /* Info.plist */,
+				A783EFC01DC9D44000319472 /* Supporting Files */,
+			);
+			path = TosTov;
+			sourceTree = "<group>";
+		};
+		A783EFC01DC9D44000319472 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A783EFC11DC9D44000319472 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A783EFBC1DC9D44000319472 /* TosTov */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A783EFD41DC9D44100319472 /* Build configuration list for PBXNativeTarget "TosTov" */;
+			buildPhases = (
+				A783EFB91DC9D44000319472 /* Sources */,
+				A783EFBA1DC9D44000319472 /* Frameworks */,
+				A783EFBB1DC9D44000319472 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TosTov;
+			productName = TosTov;
+			productReference = A783EFBD1DC9D44000319472 /* TosTov.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A783EFB51DC9D43F00319472 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Chhaly;
+				TargetAttributes = {
+					A783EFBC1DC9D44000319472 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = A783EFB81DC9D43F00319472 /* Build configuration list for PBXProject "TosTov" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A783EFB41DC9D43F00319472;
+			productRefGroup = A783EFBE1DC9D44000319472 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A783EFBC1DC9D44000319472 /* TosTov */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A783EFBB1DC9D44000319472 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A783EFD01DC9D44100319472 /* LaunchScreen.storyboard in Resources */,
+				A783EFCD1DC9D44100319472 /* Assets.xcassets in Resources */,
+				A783EFCB1DC9D44100319472 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A783EFB91DC9D44000319472 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A783EFC81DC9D44000319472 /* ViewController.m in Sources */,
+				A783EFC51DC9D44000319472 /* AppDelegate.m in Sources */,
+				A783EFC21DC9D44000319472 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A783EFC91DC9D44100319472 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A783EFCA1DC9D44100319472 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A783EFCE1DC9D44100319472 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A783EFCF1DC9D44100319472 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A783EFD21DC9D44100319472 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A783EFD31DC9D44100319472 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A783EFD51DC9D44100319472 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TosTov/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "gaea-sys.TosTov";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A783EFD61DC9D44100319472 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TosTov/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "gaea-sys.TosTov";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A783EFB81DC9D43F00319472 /* Build configuration list for PBXProject "TosTov" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A783EFD21DC9D44100319472 /* Debug */,
+				A783EFD31DC9D44100319472 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A783EFD41DC9D44100319472 /* Build configuration list for PBXNativeTarget "TosTov" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A783EFD51DC9D44100319472 /* Debug */,
+				A783EFD61DC9D44100319472 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A783EFB51DC9D43F00319472 /* Project object */;
+}
