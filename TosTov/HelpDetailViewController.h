@@ -2,7 +2,7 @@
 //  HelpDetailViewController.h
 //  TosTov
 //
-//  Created by Pichzz on 11/9/16.
+//  Created by Charlie on 11/9/16.
 //  Copyright © 2016 Chhaly. All rights reserved.
 //
 

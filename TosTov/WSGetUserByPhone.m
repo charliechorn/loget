@@ -2,7 +2,7 @@
 //  WSGetUserByPhone.m
 //  TosTov
 //
-//  Created by Pichzz on 12/7/16.
+//  Created by Charlie on 12/7/16.
 //  Copyright © 2016 Chhaly. All rights reserved.
 //
 
