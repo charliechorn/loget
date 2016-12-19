@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "TosTovViewController.h"
 #import "TosTovTripViewController.h"
+#import "TosSendDetailViewController.h"
 
 
 
@@ -47,6 +48,19 @@
     [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBackground.png"] forBarMetrics:UIBarMetricsDefault];
     nav.navigationBar.translucent = NO;
     [self presentViewController:nav animated:true completion:nil];
+}
+
+// Go to Tos Send view
+-(void)tapOnTosSend{
+    TosSendDetailViewController *tosSendVC = [[TosSendDetailViewController alloc]init];
+    tosSendVC.view.frame =self.view.bounds;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:tosSendVC];
+    nav.navigationBar.barTintColor = [UIColor grayColor];
+    nav.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBackground.png"] forBarMetrics:UIBarMetricsDefault];
+    nav.navigationBar.translucent = NO;
+    [self presentViewController:nav animated:true completion:nil];
+
 }
 
 
@@ -128,6 +142,11 @@
     self.imgTosSend.layer.borderColor = [UIColor grayColor].CGColor;
     self.imgTosSend.layer.borderWidth = 1;
     self.imgTosSend.contentMode = UIViewContentModeScaleAspectFit;
+    // add gesture tap to imgTosSend
+    UITapGestureRecognizer *tapTosSend = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOnTosSend)];
+    tapTosSend.numberOfTapsRequired = 1;
+    self.imgTosSend.userInteractionEnabled = YES;
+    [self.imgTosSend addGestureRecognizer:tapTosSend];
     [self.view addSubview:self.imgTosSend];
     
     // add img Tov Food

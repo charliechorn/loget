@@ -72,6 +72,10 @@
 		A79D6E261DD57D5500453355 /* ProgressTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A79D6E251DD57D5500453355 /* ProgressTripViewController.m */; };
 		A79D6E291DD5B11900453355 /* SearchDriverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A79D6E281DD5B11900453355 /* SearchDriverViewController.m */; };
 		A79D6E2C1DD5BE7500453355 /* TosTovViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A79D6E2B1DD5BE7500453355 /* TosTovViewController.m */; };
+		A79F33341E078AE9001819A3 /* TosSendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A79F33331E078AE9001819A3 /* TosSendDetailViewController.m */; };
+		A79F33381E079287001819A3 /* ItemIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A79F33351E079287001819A3 /* ItemIcon.png */; };
+		A79F33391E079287001819A3 /* PayIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A79F33361E079287001819A3 /* PayIcon.png */; };
+		A79F333A1E079287001819A3 /* ReceiverIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A79F33371E079287001819A3 /* ReceiverIcon.png */; };
 		A7B5C59D1DE28BF9002A0554 /* TosTovHomeIcon1.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B5C59C1DE28BF9002A0554 /* TosTovHomeIcon1.png */; };
 		A7B5C5A11DE28F65002A0554 /* TosTovHomeIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B5C5A01DE28F65002A0554 /* TosTovHomeIcon2.png */; };
 		A7B5C5A31DE29035002A0554 /* TosTovHomeIcon3.png in Resources */ = {isa = PBXBuildFile; fileRef = A7B5C5A21DE29035002A0554 /* TosTovHomeIcon3.png */; };
@@ -222,6 +226,11 @@
 		A79D6E281DD5B11900453355 /* SearchDriverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDriverViewController.m; sourceTree = "<group>"; };
 		A79D6E2A1DD5BE7500453355 /* TosTovViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TosTovViewController.h; sourceTree = "<group>"; };
 		A79D6E2B1DD5BE7500453355 /* TosTovViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TosTovViewController.m; sourceTree = "<group>"; };
+		A79F33321E078AE9001819A3 /* TosSendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TosSendDetailViewController.h; sourceTree = "<group>"; };
+		A79F33331E078AE9001819A3 /* TosSendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TosSendDetailViewController.m; sourceTree = "<group>"; };
+		A79F33351E079287001819A3 /* ItemIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ItemIcon.png; path = "../Tos Tov Pic/Tos Tov Png/ItemIcon.png"; sourceTree = "<group>"; };
+		A79F33361E079287001819A3 /* PayIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PayIcon.png; path = "../Tos Tov Pic/Tos Tov Png/PayIcon.png"; sourceTree = "<group>"; };
+		A79F33371E079287001819A3 /* ReceiverIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ReceiverIcon.png; path = "../Tos Tov Pic/Tos Tov Png/ReceiverIcon.png"; sourceTree = "<group>"; };
 		A7B5C59C1DE28BF9002A0554 /* TosTovHomeIcon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TosTovHomeIcon1.png; path = "../Tos Tov Pic/Tos Tov Png/TosTovHomeIcon1.png"; sourceTree = "<group>"; };
 		A7B5C5A01DE28F65002A0554 /* TosTovHomeIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TosTovHomeIcon2.png; path = "../Tos Tov Pic/Tos Tov Png/TosTovHomeIcon2.png"; sourceTree = "<group>"; };
 		A7B5C5A21DE29035002A0554 /* TosTovHomeIcon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TosTovHomeIcon3.png; path = "../Tos Tov Pic/Tos Tov Png/TosTovHomeIcon3.png"; sourceTree = "<group>"; };
@@ -354,6 +363,8 @@
 				A79D6E2B1DD5BE7500453355 /* TosTovViewController.m */,
 				A7CDEEDC1DF94897007F9282 /* TosTovTripViewController.h */,
 				A7CDEEDD1DF94897007F9282 /* TosTovTripViewController.m */,
+				A79F33321E078AE9001819A3 /* TosSendDetailViewController.h */,
+				A79F33331E078AE9001819A3 /* TosSendDetailViewController.m */,
 			);
 			name = MapScreen;
 			sourceTree = "<group>";
@@ -426,6 +437,9 @@
 		A789670B1DCAF7640062FE58 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				A79F33351E079287001819A3 /* ItemIcon.png */,
+				A79F33361E079287001819A3 /* PayIcon.png */,
+				A79F33371E079287001819A3 /* ReceiverIcon.png */,
 				A78A80341DF1608E006875A3 /* DesPin.png */,
 				A78A80351DF1608E006875A3 /* OriginPin.png */,
 				A78A80361DF1608E006875A3 /* TosTovPin.png */,
@@ -650,6 +664,7 @@
 				A783EFCB1DC9D44100319472 /* Main.storyboard in Resources */,
 				A7B5C5BB1DE2A6B6002A0554 /* OtherIcon.png in Resources */,
 				A7B5C5DB1DE2F01E002A0554 /* DriverIcon.png in Resources */,
+				A79F33391E079287001819A3 /* PayIcon.png in Resources */,
 				A789670D1DCAF7810062FE58 /* eye-button_318-84952.jpg in Resources */,
 				A7B5C5F51DE308CD002A0554 /* MotoIcon.png in Resources */,
 				A797ED641DE406B8009603AB /* MyAccSelectedIcon.png in Resources */,
@@ -664,6 +679,7 @@
 				A7B5C5CF1DE2DBFD002A0554 /* TickIcon.png in Resources */,
 				A7B5C59D1DE28BF9002A0554 /* TosTovHomeIcon1.png in Resources */,
 				A73AA7D91DD45F08003E8A03 /* RedMap.png in Resources */,
+				A79F33381E079287001819A3 /* ItemIcon.png in Resources */,
 				A79569E31DCC3DF50097BB66 /* ButtonRed.png in Resources */,
 				A797ED631DE406B8009603AB /* MyAccIcon.png in Resources */,
 				A7B5C5CD1DE2B5F1002A0554 /* SubmitIcon.png in Resources */,
@@ -674,6 +690,7 @@
 				A7B5C5AB1DE2992A002A0554 /* TosTovBigLogo.png in Resources */,
 				A797ED6A1DE42D65009603AB /* UserLogo.png in Resources */,
 				A7B5C5D31DE2E05B002A0554 /* InfoIcon.png in Resources */,
+				A79F333A1E079287001819A3 /* ReceiverIcon.png in Resources */,
 				A7B5C5F11DE30373002A0554 /* RefreshButton.png in Resources */,
 				A7B5C5D91DE2E6F1002A0554 /* PlaceIcon.png in Resources */,
 				A7B5C5C11DE2AB23002A0554 /* MailIcon.png in Resources */,
@@ -707,6 +724,7 @@
 				A783EFC51DC9D44000319472 /* AppDelegate.m in Sources */,
 				A73A2AB61DF6C34E00A4C0C2 /* WSLogin.m in Sources */,
 				A78967241DCB4A2B0062FE58 /* HistoryViewController.m in Sources */,
+				A79F33341E078AE9001819A3 /* TosSendDetailViewController.m in Sources */,
 				A79569ED1DCC84D20097BB66 /* PasscodeViewController.m in Sources */,
 				A780C77C1DD1D10E00152BDB /* TermViewController.m in Sources */,
 				A789672A1DCB4B820062FE58 /* MyAccountViewController.m in Sources */,
