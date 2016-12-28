@@ -10,6 +10,9 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <CoreLocation/CoreLocation.h>
 #import "SearchDriverViewController.h"
+#import "WSOrderTrip.h"
+#import "Reachability.h"
+#import "MyManager.h"
 
 @interface TosTovTripViewController ()<CLLocationManagerDelegate,GMSMapViewDelegate>
 
@@ -68,6 +71,47 @@
 
 // Select a trip and order
 -(void)orderTrip{
+    if ([self.txtOrigin.text isEqualToString:@""] || [self.txtDesc.text isEqualToString:@""]) {
+        [self alertBoxWithMessage:@"" message:@"Please input locations."];
+        return;
+    }
+    
+    // Order
+    if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable) {
+        //connection unavailable
+        [self alertBoxWithMessage:@"No Internet!" message:@"Please check internet connection."];
+    }else {
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+        [parameters setObject:[[MyManager sharedManager]userId]  forKey:@"userId"];
+        [parameters setObject:[NSString stringWithFormat:@"%f",self.originCoordinate.latitude] forKey:@"originLatitude"];
+        [parameters setObject:[NSString stringWithFormat:@"%f",self.originCoordinate.longitude] forKey:@"originLongtitude"];
+        [parameters setObject:[NSString stringWithFormat:@"%f",self.desCoordinate.latitude] forKey:@"desLatitude"];
+        [parameters setObject:[NSString stringWithFormat:@"%f",self.desCoordinate.longitude] forKey:@"desLongtitude"];
+        [parameters setObject:self.txtOrigin.text forKey:@"originText"];
+        [parameters setObject:self.txtDesc.text forKey:@"desText"];
+        
+        NSLog(@"Parameter are : %@",parameters);
+        __weak TosTovTripViewController *weakSelf = self;
+        WSOrderTrip *orderTripService = [[WSOrderTrip alloc]init];
+        orderTripService.postBody = parameters;
+        
+        orderTripService.onSuccess = ^(id contr, id result){
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//            });
+            NSLog(@" trip is : %@",result);
+            
+        };
+        orderTripService.onError = ^(id contr, id result){
+            dispatch_async(dispatch_get_main_queue(), ^{
+               
+                NSDictionary *response = [[NSDictionary alloc]initWithDictionary:result];
+                [weakSelf alertBoxWithMessage:@"Error" message:[NSString stringWithFormat:@"%@",[response objectForKey:@"error"]]];
+            });
+        };
+        
+        [orderTripService callRequest];
+    }
+    
     SearchDriverViewController *searchVC = [[SearchDriverViewController alloc]init];
     searchVC.view.frame = self.view.bounds;
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:searchVC];
@@ -84,6 +128,15 @@
 -(void)clickOnTukTuk{
     [self showPayment];
 }
+
+// Alert any message with title
+-(void)alertBoxWithMessage : (NSString*) title message:(NSString*) message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:actionOk];
+    [self presentViewController:alert animated:true completion:nil];
+}
+
 
 // Drap marker
 -(void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker{

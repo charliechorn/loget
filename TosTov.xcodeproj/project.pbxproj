@@ -27,6 +27,7 @@
 		A783EFCD1DC9D44100319472 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A783EFCC1DC9D44100319472 /* Assets.xcassets */; };
 		A783EFD01DC9D44100319472 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A783EFCE1DC9D44100319472 /* LaunchScreen.storyboard */; };
 		A783EFD91DC9E11F00319472 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A783EFD81DC9E11F00319472 /* LogInViewController.m */; };
+		A78499F41E13A77E00D06A98 /* WSOrderTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = A78499F31E13A77E00D06A98 /* WSOrderTrip.m */; };
 		A7853D071DE6EDF800E882BE /* ArrowUpIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A7853D061DE6EDF700E882BE /* ArrowUpIcon.png */; };
 		A789670A1DCAEB0F0062FE58 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A78967091DCAEB0F0062FE58 /* MainViewController.m */; };
 		A789670D1DCAF7810062FE58 /* eye-button_318-84952.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A789670C1DCAF7810062FE58 /* eye-button_318-84952.jpg */; };
@@ -169,6 +170,8 @@
 		A783EFD11DC9D44100319472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A783EFD71DC9E11F00319472 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		A783EFD81DC9E11F00319472 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		A78499F21E13A77E00D06A98 /* WSOrderTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSOrderTrip.h; sourceTree = "<group>"; };
+		A78499F31E13A77E00D06A98 /* WSOrderTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSOrderTrip.m; sourceTree = "<group>"; };
 		A7853D061DE6EDF700E882BE /* ArrowUpIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ArrowUpIcon.png; path = "../Tos Tov Pic/Tos Tov Png/ArrowUpIcon.png"; sourceTree = "<group>"; };
 		A78967081DCAEB0F0062FE58 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		A78967091DCAEB0F0062FE58 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -346,6 +349,8 @@
 				A77B72291DF7BD5F00E4737E /* WSSignUp.m */,
 				A77B722B1DF7FC4300E4737E /* WSReport.h */,
 				A77B722C1DF7FC4300E4737E /* WSReport.m */,
+				A78499F21E13A77E00D06A98 /* WSOrderTrip.h */,
+				A78499F31E13A77E00D06A98 /* WSOrderTrip.m */,
 			);
 			name = WS;
 			sourceTree = "<group>";
@@ -747,6 +752,7 @@
 				A7CDEEDE1DF94897007F9282 /* TosTovTripViewController.m in Sources */,
 				A7C843051DD08FE4003D4BE3 /* SignUpViewController.m in Sources */,
 				A78F27631DD2DD4D0031818A /* HelpDetailViewController.m in Sources */,
+				A78499F41E13A77E00D06A98 /* WSOrderTrip.m in Sources */,
 				A7C843021DD06C94003D4BE3 /* NewPasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
