@@ -55,6 +55,11 @@
 //    marker.map = self.mapView;
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [self.footerPayment removeFromSuperview];
+    [self.btnOrder removeFromSuperview];
+    [self showDriverFooter];
+}
 
 // Go back to previous view
 -(void)backToMain{
@@ -286,8 +291,14 @@
 
     [self.view addSubview:self.mapView];
     
+    
+    
+}
+
+// Show driver view
+-(void)showDriverFooter {
     // add footer driver
-    self.footerDriver = [[UIView alloc]initWithFrame:CGRectMake(3, self.view.frame.size.height - 100 - 67, /** 67 is additional **/
+    self.footerDriver = [[UIView alloc]initWithFrame:CGRectMake(3, self.view.frame.size.height - 100, /** -67 is additional **/
                                                                 self.view.bounds.size.width-6, 100)];
     self.footerDriver.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.footerDriver];
@@ -310,7 +321,6 @@
     [self.btnTukTuk setImage:buttonImageTukTuk forState:UIControlStateNormal];
     [self.btnTukTuk addTarget:self action:@selector(clickOnTukTuk) forControlEvents:UIControlEventTouchUpInside];
     [self.footerDriver addSubview:self.btnTukTuk];
-    
 }
 
 
