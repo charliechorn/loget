@@ -9,6 +9,10 @@
 #import "HistoryViewController.h"
 #import "CompleteTripViewController.h"
 #import "ProgressTripViewController.h"
+#import "Reachability.h"
+#import "WSGetTosGoTripList.h"
+#import "WSGetAllList.h"
+#import "MyManager.h"
 
 @interface HistoryViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -18,6 +22,7 @@
 @property (nonatomic, strong) UITableView *completeTable;
 @property (nonatomic, strong) NSMutableArray *arrCompleteContent;
 @property (nonatomic, strong) NSMutableArray *arrprogressContent;
+@property (nonatomic, strong) NSArray *responseData;
 
 
 @end
@@ -44,6 +49,8 @@
                             @{@"status":@"In Progress",@"place":@"AEON MALL", @"date":@"22 Feb, 09:10"},
                             nil];
     [self addComponents];
+    //[self getTosGoTripList];
+    [self getAllList];
 
 }
 
@@ -57,6 +64,48 @@
     }else {
         [self.progressTable setHidden:YES];
         [self.completeTable setHidden:NO];
+    }
+}
+
+// Get All List
+-(void)getAllList{
+    if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable) {
+    }
+    else{
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+        [parameters setObject:[[MyManager sharedManager]userId]  forKey:@"userId"];
+        WSGetAllList *getAllListService = [[WSGetAllList alloc]init];
+        getAllListService.postBody = parameters;
+        getAllListService.onSuccess = ^(id contr, id result){
+            self.responseData = [[[NSDictionary alloc]initWithDictionary:result]objectForKey:@"responseData"];
+            NSLog(@"resutl is  : %@",self.responseData);
+        };
+        getAllListService.onError = ^(id contr, id result){
+            
+        };
+        [getAllListService callRequest];
+    }
+}
+
+
+// Get TosGo trip list
+-(void)getTosGoTripList{
+    if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable) {
+    }
+    else{
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+        [parameters setObject:[[MyManager sharedManager]userId]  forKey:@"userId"];
+        WSGetTosGoTripList *getTripListService = [[WSGetTosGoTripList alloc]init];
+        getTripListService.postBody = parameters;
+        getTripListService.onSuccess = ^(id contr, id result){
+            self.responseData = [[[NSDictionary alloc]initWithDictionary:result]objectForKey:@"responseData"];
+            NSLog(@"resutl is  : %@",self.responseData);
+        };
+        getTripListService.onError = ^(id contr, id result){
+            
+        };
+        [getTripListService callRequest];
+        
     }
 }
 

@@ -67,7 +67,7 @@
             WSLogin *loginSerivce = [[WSLogin alloc]init];
             loginSerivce.postBody = parameters;
             loginSerivce.onSuccess=^(id contr, id result){
-                NSDictionary *responseResult = [[NSDictionary alloc]initWithDictionary:result];
+                NSDictionary *responseResult = [[[NSDictionary alloc]initWithDictionary:result] objectForKey:@"responseData"];
                 [[MyManager sharedManager] setUserId:[responseResult objectForKey:@"id"]];
                 [[MyManager sharedManager] setPassword:[responseResult objectForKey:@"password"]];
                 [[MyManager sharedManager]setPhone:[responseResult objectForKey:@"phone"]];

@@ -233,6 +233,7 @@
     self.imgPostPaid.image = [UIImage imageNamed:@"BulletIcon.png"];
 }
 -(void)tickPostPaid{
+    
     isPrePaid = false;
     self.imgPrepaid.image = [UIImage imageNamed:@"BulletIcon.png"];
     self.imgPostPaid.image = [UIImage imageNamed:@"BulletSelectedIcon.png"];
@@ -240,7 +241,12 @@
 }
 
 -(void)goToTosTovTrip{
-    TosTovTripViewController *tosTovVC = [[TosTovTripViewController alloc]init];
+    NSString *prepaid = @"0";
+    if (isPrePaid)prepaid = @"1";
+    NSString *insurance = @"0";
+    if (isInsurance) insurance = @"1";
+    
+    TosTovTripViewController *tosTovVC = [[TosTovTripViewController alloc]initWithWeight:self.txtWeightSize.text unit:self.txtUnit.text description:self.txtDescription.text receiverPhone:self.txtReceiverPhone.text refCode:self.txtRefCode.text isInsurance:insurance isPrepaid:prepaid andIsTosTov:@"0"];
     tosTovVC.view.frame = self.view.bounds;
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:tosTovVC];
     nav.navigationBar.barTintColor = [UIColor grayColor];

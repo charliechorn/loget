@@ -40,7 +40,7 @@
 //    nav.navigationBar.translucent = NO;
 //    [self presentViewController:nav animated:true completion:nil];
     
-    TosTovTripViewController *tosTovVC = [[TosTovTripViewController alloc]init];
+    TosTovTripViewController *tosTovVC = [[TosTovTripViewController alloc]initWithIsTosTov:@"1"];
     tosTovVC.view.frame = self.view.bounds;
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:tosTovVC];
     nav.navigationBar.barTintColor = [UIColor grayColor];

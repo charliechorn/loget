@@ -33,7 +33,9 @@
             self.onError(self,@{@"error":error});
             
         }else{
+            //NSArray *arrDic = [NSArray arrayWithObject:[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]];
             NSDictionary *responseData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            //NSDictionary *responseData = [arrDic objectAtIndex:0];
             NSLog(@"response data is %@", responseData);
             if (responseData[@"error"]) {
                 self.onError(self,@{@"error":responseData[@"error"]});

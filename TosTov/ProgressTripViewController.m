@@ -11,6 +11,7 @@
 #import "ProgressTripViewController.h"
 #import "SearchDriverViewController.h"
 
+
 @interface ProgressTripViewController ()
 
 @property (nonatomic, strong) UITextField *txtOrigin;
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) UIButton *btnMessage;
 @property (nonatomic, strong) UIButton *btnCall;
 
+
 @end
 
 @implementation ProgressTripViewController
@@ -31,6 +33,7 @@
     [super viewDidLoad];
     
     [self addComponents];
+    
 }
 
                                         /** Functionality **/
@@ -42,6 +45,8 @@
     }
     return self;
 }
+
+
 
 // Go back to previous view
 -(void)backToMain{

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A70E758B1E1B98EC00C1CAC2 /* WSGetTosGoTripList.m in Sources */ = {isa = PBXBuildFile; fileRef = A70E758A1E1B98EC00C1CAC2 /* WSGetTosGoTripList.m */; };
+		A73472BB1E1E3ED000EF9176 /* WSOrderTosSendTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = A73472BA1E1E3ED000EF9176 /* WSOrderTosSendTrip.m */; };
+		A73472BE1E1E4C1200EF9176 /* WSGetAllList.m in Sources */ = {isa = PBXBuildFile; fileRef = A73472BD1E1E4C1200EF9176 /* WSGetAllList.m */; };
 		A73A2AA81DF650A200A4C0C2 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A73A2AA71DF650A200A4C0C2 /* MyManager.m */; };
 		A73A2AAB1DF6580800A4C0C2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A73A2AAA1DF6580800A4C0C2 /* Reachability.m */; };
 		A73A2AAF1DF6B40400A4C0C2 /* MyUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A73A2AAE1DF6B40400A4C0C2 /* MyUtils.m */; };
@@ -133,6 +136,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A70E75891E1B98EC00C1CAC2 /* WSGetTosGoTripList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSGetTosGoTripList.h; sourceTree = "<group>"; };
+		A70E758A1E1B98EC00C1CAC2 /* WSGetTosGoTripList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSGetTosGoTripList.m; sourceTree = "<group>"; };
+		A73472B91E1E3ED000EF9176 /* WSOrderTosSendTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSOrderTosSendTrip.h; sourceTree = "<group>"; };
+		A73472BA1E1E3ED000EF9176 /* WSOrderTosSendTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSOrderTosSendTrip.m; sourceTree = "<group>"; };
+		A73472BC1E1E4C1200EF9176 /* WSGetAllList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSGetAllList.h; sourceTree = "<group>"; };
+		A73472BD1E1E4C1200EF9176 /* WSGetAllList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSGetAllList.m; sourceTree = "<group>"; };
 		A73A2AA61DF650A200A4C0C2 /* MyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyManager.h; sourceTree = "<group>"; };
 		A73A2AA71DF650A200A4C0C2 /* MyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyManager.m; sourceTree = "<group>"; };
 		A73A2AA91DF6580800A4C0C2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../../Downloads/Reachability/Reachability/Reachability.h; sourceTree = "<group>"; };
@@ -351,6 +360,12 @@
 				A77B722C1DF7FC4300E4737E /* WSReport.m */,
 				A78499F21E13A77E00D06A98 /* WSOrderTrip.h */,
 				A78499F31E13A77E00D06A98 /* WSOrderTrip.m */,
+				A70E75891E1B98EC00C1CAC2 /* WSGetTosGoTripList.h */,
+				A70E758A1E1B98EC00C1CAC2 /* WSGetTosGoTripList.m */,
+				A73472B91E1E3ED000EF9176 /* WSOrderTosSendTrip.h */,
+				A73472BA1E1E3ED000EF9176 /* WSOrderTosSendTrip.m */,
+				A73472BC1E1E4C1200EF9176 /* WSGetAllList.h */,
+				A73472BD1E1E4C1200EF9176 /* WSGetAllList.m */,
 			);
 			name = WS;
 			sourceTree = "<group>";
@@ -745,8 +760,11 @@
 				A73A2AA81DF650A200A4C0C2 /* MyManager.m in Sources */,
 				A783EFC21DC9D44000319472 /* main.m in Sources */,
 				A73A2AAB1DF6580800A4C0C2 /* Reachability.m in Sources */,
+				A73472BB1E1E3ED000EF9176 /* WSOrderTosSendTrip.m in Sources */,
 				A79569E81DCC476C0097BB66 /* SendPhoneNumViewController.m in Sources */,
 				A79D6E2C1DD5BE7500453355 /* TosTovViewController.m in Sources */,
+				A70E758B1E1B98EC00C1CAC2 /* WSGetTosGoTripList.m in Sources */,
+				A73472BE1E1E4C1200EF9176 /* WSGetAllList.m in Sources */,
 				A77B72271DF7B5AF00E4737E /* WSChangePassword.m in Sources */,
 				A77B722A1DF7BD5F00E4737E /* WSSignUp.m in Sources */,
 				A7CDEEDE1DF94897007F9282 /* TosTovTripViewController.m in Sources */,

@@ -15,7 +15,7 @@
 }
 
 -(NSString *)getURLSuffix{
-    return @"orderTrip";
+    return @"ordertrip";
 }
 
 @end

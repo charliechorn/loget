@@ -101,7 +101,7 @@
         signUpService.postBody = parameters;
         
         signUpService.onSuccess = ^(id contr, id result) {
-            NSDictionary *response = [[NSDictionary alloc]initWithDictionary:result];
+            NSDictionary *response = [[[NSDictionary alloc]initWithDictionary:result] objectForKey:@"responseData"];
             [[MyManager sharedManager] setUserId:[response objectForKey:@"userId"] ];
             [[MyManager sharedManager] setSessionId:[response objectForKey:@"sessionId"]];
             [[MyManager sharedManager] setPhone:[response objectForKey:@"phone"]];

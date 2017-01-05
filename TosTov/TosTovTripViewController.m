@@ -11,6 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "SearchDriverViewController.h"
 #import "WSOrderTrip.h"
+#import "WSOrderTosSendTrip.h"
 #import "Reachability.h"
 #import "MyManager.h"
 
@@ -42,6 +43,27 @@
     int count;
 }
 
+-(id)initWithWeight:(NSString *)weight unit:(NSString *)unit description:(NSString *)sendDesc receiverPhone:(NSString *)receiverPhone refCode:(NSString *)refCode isInsurance:(NSString *)isInsurance isPrepaid:(NSString *)isPrepaid andIsTosTov:(NSString *)isTosTov{
+    if(self=[super init]){
+        self.weight = weight;
+        self.unit = unit;
+        self.sendDesc = sendDesc;
+        self.receiverPhone = receiverPhone;
+        self.refCode = refCode;
+        self.isInsurance = isInsurance;
+        self.isPrepaid = isPrepaid;
+        self.isTosTov = isTosTov;
+    }
+    return self;
+}
+
+-(id)initWithIsTosTov:(NSString *)isTosTov{
+    if(self=[super init]){
+        self.isTosTov = isTosTov;
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,6 +91,14 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+-(void)submitOrder {
+    if ([self.isTosTov isEqualToString:@"1"]) {
+        [self orderTrip];
+    }else{
+        [self orderTosSendTrip];
+    }
+}
+
 // Select a trip and order
 -(void)orderTrip{
     if ([self.txtOrigin.text isEqualToString:@""] || [self.txtDesc.text isEqualToString:@""]) {
@@ -82,7 +112,8 @@
         [self alertBoxWithMessage:@"No Internet!" message:@"Please check internet connection."];
     }else {
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-        [parameters setObject:[[MyManager sharedManager]userId]  forKey:@"userId"];
+        NSString *userId = [NSString stringWithFormat:@"%@",[[MyManager sharedManager]userId]];
+        [parameters setObject:userId  forKey:@"userId"];
         [parameters setObject:[NSString stringWithFormat:@"%f",self.originCoordinate.latitude] forKey:@"originLatitude"];
         [parameters setObject:[NSString stringWithFormat:@"%f",self.originCoordinate.longitude] forKey:@"originLongtitude"];
         [parameters setObject:[NSString stringWithFormat:@"%f",self.desCoordinate.latitude] forKey:@"desLatitude"];
@@ -117,6 +148,66 @@
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:searchVC];
     [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBackground.png"] forBarMetrics:UIBarMetricsDefault];
     [self presentViewController:nav animated:true completion:nil];
+}
+
+-(void)orderTosSendTrip{
+    if ([self.txtOrigin.text isEqualToString:@""] || [self.txtDesc.text isEqualToString:@""]) {
+        [self alertBoxWithMessage:@"" message:@"Please input locations."];
+        return;
+    }
+    
+    // Order
+    if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable) {
+        //connection unavailable
+        [self alertBoxWithMessage:@"No Internet!" message:@"Please check internet connection."];
+    }else{
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+        NSString *userId = [NSString stringWithFormat:@"%@",[[MyManager sharedManager]userId]];
+        [parameters setObject:userId  forKey:@"userId"];
+        [parameters setObject:[NSString stringWithFormat:@"%f",self.originCoordinate.latitude] forKey:@"originLatitude"];
+        [parameters setObject:[NSString stringWithFormat:@"%f",self.originCoordinate.longitude] forKey:@"originLongtitude"];
+        [parameters setObject:[NSString stringWithFormat:@"%f",self.desCoordinate.latitude] forKey:@"desLatitude"];
+        [parameters setObject:[NSString stringWithFormat:@"%f",self.desCoordinate.longitude] forKey:@"desLongtitude"];
+        [parameters setObject:self.txtOrigin.text forKey:@"originText"];
+        [parameters setObject:self.txtDesc.text forKey:@"desText"];
+        
+        [parameters setObject:[NSNumber numberWithDouble:self.weight.doubleValue] forKey:@"weight"];
+        [parameters setObject:[NSNumber numberWithInt:self.unit.integerValue ] forKey:@"unit"];
+        [parameters setObject:self.sendDesc forKey:@"desription"];
+        [parameters setObject:self.receiverPhone forKey:@"receiverPhone"];
+        [parameters setObject:self.refCode forKey:@"refCode"];
+        [parameters setObject:self.isInsurance forKey:@"isInsurance"];
+        [parameters setObject:self.isPrepaid forKey:@"isPrepaid"];
+        
+        NSLog(@"Parameter are : %@",parameters);
+        __weak TosTovTripViewController *weakSelf = self;
+        WSOrderTosSendTrip *orderTripService = [[WSOrderTosSendTrip alloc]init];
+        orderTripService.postBody = parameters;
+        
+        orderTripService.onSuccess = ^(id contr, id result){
+            //            dispatch_async(dispatch_get_main_queue(), ^{
+            //            });
+            NSLog(@" trip is : %@",result);
+            
+        };
+        orderTripService.onError = ^(id contr, id result){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSDictionary *response = [[NSDictionary alloc]initWithDictionary:result];
+                [weakSelf alertBoxWithMessage:@"Error" message:[NSString stringWithFormat:@"%@",[response objectForKey:@"error"]]];
+            });
+        };
+        
+        [orderTripService callRequest];
+    }
+    
+    SearchDriverViewController *searchVC = [[SearchDriverViewController alloc]init];
+    searchVC.view.frame = self.view.bounds;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:searchVC];
+    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavBackground.png"] forBarMetrics:UIBarMetricsDefault];
+    [self presentViewController:nav animated:true completion:nil];
+        
+    
 }
 
 // Select on moto driver
@@ -461,7 +552,7 @@
     lblOrder.textColor = [UIColor whiteColor];
     lblOrder.text = orderStr;
     [self.btnOrder addSubview:lblOrder];
-    [self.btnOrder addTarget:self action:@selector(orderTrip) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnOrder addTarget:self action:@selector(submitOrder) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnOrder];
     
     

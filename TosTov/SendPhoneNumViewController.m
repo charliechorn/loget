@@ -80,7 +80,7 @@
             // Dispatch a block of code to a background queue
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             dispatch_async(queue, ^{
-                self.responseData = [[NSDictionary alloc]initWithDictionary:result];
+                self.responseData = [[[NSDictionary alloc]initWithDictionary:result] objectForKey:@"responseData"];
                 [[MyManager sharedManager] setUserId:[self.responseData objectForKey:@"id"]];
                 [[MyManager sharedManager] setPassword:[self.responseData objectForKey:@"password"]];
                 [[MyManager sharedManager]setPhone:[self.responseData objectForKey:@"phone"]];
