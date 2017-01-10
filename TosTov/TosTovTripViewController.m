@@ -308,11 +308,14 @@
                 self.txtDesc.text = addrText;
                 isOrigin = true;
             }
-            
-            if (count>=2) {
+            if(![self.txtOrigin.text isEqualToString:@""] && ![self.txtDesc.text isEqualToString:@""]){
                 [self drawRouteLine];
-                
             }
+            
+//            if (count>=2) {
+//                [self drawRouteLine];
+//                
+//            }
             
         });
         

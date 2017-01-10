@@ -11,5 +11,5 @@
 
 @interface MyUtils : NSObject
 -(void)alertBoxWithMessage : (NSString*) title message:(NSString*) message andController:(UIViewController *)contr;
-
++(NSString *)getFormatDateWithString: (NSString *)str;
 @end

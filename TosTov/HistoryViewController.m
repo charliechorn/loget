@@ -13,6 +13,7 @@
 #import "WSGetTosGoTripList.h"
 #import "WSGetAllList.h"
 #import "MyManager.h"
+#import "MyUtils.h"
 
 @interface HistoryViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -31,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.arrprogressContent = [[NSMutableArray alloc]init];
     
     // Force navigation bar not to hide any top view
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
@@ -45,9 +46,9 @@
                        @{@"status":@"Completed",@"place":@"PSAR TMEY", @"date":@"19 Feb, 10:10",@"isRated":@"no"},
                        @{@"status":@"Completed",@"place":@"HOME", @"date":@"19 Feb, 10:45",@"isRated":@"yes"},
                        nil];
-    self.arrprogressContent = [[NSMutableArray alloc]initWithObjects:@{@"status":@"Finding Driver",@"place":@"AEON MALL", @"date":@"22 Feb, 10:10"},
-                            @{@"status":@"In Progress",@"place":@"AEON MALL", @"date":@"22 Feb, 09:10"},
-                            nil];
+//    self.arrprogressContent = [[NSMutableArray alloc]initWithObjects:@{@"status":@"Finding Driver",@"place":@"AEON MALL", @"date":@"22 Feb, 10:10"},
+//                            @{@"status":@"In Progress",@"place":@"AEON MALL", @"date":@"22 Feb, 09:10"},
+//                            nil];
     [self addComponents];
     //[self getTosGoTripList];
     [self getAllList];
@@ -77,8 +78,18 @@
         WSGetAllList *getAllListService = [[WSGetAllList alloc]init];
         getAllListService.postBody = parameters;
         getAllListService.onSuccess = ^(id contr, id result){
-            self.responseData = [[[NSDictionary alloc]initWithDictionary:result]objectForKey:@"responseData"];
-            NSLog(@"resutl is  : %@",self.responseData);
+//            self.responseData = [[[NSDictionary alloc]initWithDictionary:result]objectForKey:@"responseData"];
+//            NSLog(@"resutl is  : %@",self.responseData);
+            NSArray *arr = [[[NSDictionary alloc]initWithDictionary:result]objectForKey:@"responseData"];
+            
+            for (NSDictionary *tempDic in arr) {
+                if([[tempDic objectForKey:@"status"] isEqualToString:@"0"])
+                    [self.arrprogressContent addObject:tempDic];
+            }
+            NSLog(@"progress list is: %@",self.arrprogressContent);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.progressTable reloadData];
+            });
         };
         getAllListService.onError = ^(id contr, id result){
             
@@ -89,25 +100,26 @@
 
 
 // Get TosGo trip list
--(void)getTosGoTripList{
-    if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable) {
-    }
-    else{
-        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
-        [parameters setObject:[[MyManager sharedManager]userId]  forKey:@"userId"];
-        WSGetTosGoTripList *getTripListService = [[WSGetTosGoTripList alloc]init];
-        getTripListService.postBody = parameters;
-        getTripListService.onSuccess = ^(id contr, id result){
-            self.responseData = [[[NSDictionary alloc]initWithDictionary:result]objectForKey:@"responseData"];
-            NSLog(@"resutl is  : %@",self.responseData);
-        };
-        getTripListService.onError = ^(id contr, id result){
-            
-        };
-        [getTripListService callRequest];
-        
-    }
-}
+//-(void)getTosGoTripList{
+//    if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable) {
+//    }
+//    else{
+//        NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+//        [parameters setObject:[[MyManager sharedManager]userId]  forKey:@"userId"];
+//        WSGetTosGoTripList *getTripListService = [[WSGetTosGoTripList alloc]init];
+//        getTripListService.postBody = parameters;
+//        getTripListService.onSuccess = ^(id contr, id result){
+//            self.responseData = [[[NSDictionary alloc]initWithDictionary:result]objectForKey:@"responseData"];
+//            NSLog(@"resutl is  : %@",self.responseData);
+//            
+//        };
+//        getTripListService.onError = ^(id contr, id result){
+//            
+//        };
+//        [getTripListService callRequest];
+//        
+//    }
+//}
 
 -(void)reloadData{
     
@@ -177,17 +189,29 @@
     lblDate =[[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width - 70 - 10, 11, 70, 10)];
     lblDate.font = [UIFont systemFontOfSize:10];
     //lblDate.textColor = [UIColor redColor];
+
+    
+    cell.imageView.image = [UIImage imageNamed:@"TosTovIcon.png"];
     if (tableView==self.progressTable) {
-       
-        cell.imageView.image = [UIImage imageNamed:@"TosTovIcon.png"];
-        cell.textLabel.text = [[self.arrprogressContent objectAtIndex:indexPath.row] objectForKey:@"status"];
-        cell.detailTextLabel.text = [[self.arrprogressContent objectAtIndex:indexPath.row] objectForKey:@"place"];
-        lblDate.text = [[self.arrprogressContent objectAtIndex:indexPath.row] objectForKey:@"date"];
+        
+        //cell.textLabel.text = [[self.arrprogressContent objectAtIndex:indexPath.row] objectForKey:@"status"];
+        cell.textLabel.text = @"In progress";
+        cell.detailTextLabel.text = [[self.arrprogressContent objectAtIndex:indexPath.row] objectForKey:@"desText"];
+        //lblDate.text = [[self.arrprogressContent objectAtIndex:indexPath.row] objectForKey:@"date"];
+        
+        NSString *showDate = [MyUtils getFormatDateWithString:[[self.arrprogressContent objectAtIndex:indexPath.row] objectForKey:@"tripDate"]];
+        NSLog(@"date is %@",showDate);
+        
+        if (showDate == nil) {
+            lblDate.text = @"";
+        }else{
+           lblDate.text = showDate;
+        }
+        
         [cell.contentView addSubview:lblDate];
         
     }
     else {
-        cell.imageView.image = [UIImage imageNamed:@"TosTovIcon.png"];
         cell.textLabel.text = [[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"status"];
         cell.detailTextLabel.text = [[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"place"];
         lblDate.text = [[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"date"];

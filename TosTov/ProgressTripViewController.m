@@ -18,6 +18,9 @@
 @property (nonatomic, strong) UITextField *txtDesc;
 //@property (nonatomic, strong) MKMapView *tripMap;
 @property (nonatomic, strong) GMSMapView *mapView;
+@property (nonatomic, strong) GMSMarker *originMark;
+@property (nonatomic, strong) GMSMarker *desMark;
+@property (nonatomic , strong) GMSPolyline *polyline;
 
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) UIButton *btnCancel;
@@ -33,7 +36,7 @@
     [super viewDidLoad];
     
     [self addComponents];
-    
+    [self drawRouteLine];
 }
 
                                         /** Functionality **/
@@ -55,6 +58,64 @@
 
 -(void)refreshMap{
     
+}
+
+-(void)dropPinMarkers{
+    CLLocationCoordinate2D origin = CLLocationCoordinate2DMake([[self.tripContent objectForKey:@"originLatitude"] floatValue], [[self.tripContent objectForKey:@"originLongtitude"] floatValue]);
+    CLLocationCoordinate2D des = CLLocationCoordinate2DMake([[self.tripContent objectForKey:@"desLatitude"] floatValue], [[self.tripContent objectForKey:@"desLongtitude"] floatValue]);
+    UIImageView *pinOrigin = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"OriginPin.png"]];
+    pinOrigin.frame = CGRectMake(0, 0, 15, 23);
+    self.originMark = [[GMSMarker alloc]init];
+    self.originMark.position = origin;
+    self.originMark.iconView = pinOrigin;
+    self.originMark.map = self.mapView;
+    self.txtOrigin.text = [self.tripContent objectForKey:@"originText"];
+    
+    UIImageView *pinDes = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"DesPin.png"]];
+    pinDes.frame = CGRectMake(0, 0, 15, 23);
+    self.desMark = [[GMSMarker alloc]init];
+    self.desMark.position = des;
+    self.desMark.iconView = pinDes;
+    self.desMark.map = self.mapView;
+    self.txtDesc.text = [self.tripContent objectForKey:@"desText"];
+    
+}
+
+-(void)drawRouteLine{
+    [self dropPinMarkers];
+    float originLa = [[self.tripContent objectForKey:@"originLatitude"] floatValue];
+    float originLo = [[self.tripContent objectForKey:@"originLongtitude"] floatValue];
+    float desLa = [[self.tripContent objectForKey:@"desLatitude"] floatValue];
+    float desLo = [[self.tripContent objectForKey:@"desLongtitude"] floatValue];
+    
+    
+    NSString *url = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/directions/json?origin=%f,%f&destination=%f,%f&sensor=true",originLa,originLo,desLa,desLo];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler: ^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"Error is %@",error);
+        }
+        else{
+            NSDictionary *responseRouteData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSLog(@"route is : %@",[responseRouteData objectForKey:@"routes"][0][@"overview_polyline"]  [@"points"]);
+            GMSPath *pathRoute  = [GMSPath pathFromEncodedPath:[responseRouteData objectForKey:@"routes"][0][@"overview_polyline"]  [@"points"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.polyline) {
+                    self.polyline.map = nil;
+                }
+                self.polyline = [GMSPolyline polylineWithPath:pathRoute];
+                self.polyline.strokeColor = [UIColor colorWithRed:0.15 green:0.60 blue:0.96 alpha:1.0];
+                self.polyline.strokeWidth = 5.0f;
+                self.polyline.map = self.mapView;
+            });
+            
+        }
+        
+    }];
+    
+    [task resume];
 }
 
 /** View Decoration **/
