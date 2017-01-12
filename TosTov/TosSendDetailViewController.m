@@ -84,6 +84,7 @@
     
     // add textfield unit
     self.txtUnit = [[UITextField alloc]initWithFrame:CGRectMake(self.txtWeightSize.frame.origin.x, self.txtWeightSize.frame.origin.y + self.txtWeightSize.bounds.size.height + 5, self.txtWeightSize.bounds.size.width, 30)];
+    [self.txtUnit setKeyboardType:UIKeyboardTypeNumberPad];
     [self setTextFieldAttr:self.txtUnit withFont:13 withPlaceHolder:@"Unit"];
     [self.view addSubview:self.txtUnit];
     
@@ -105,6 +106,7 @@
     
     // add textfield receiver's phone
     self.txtReceiverPhone = [[UITextField alloc]initWithFrame:CGRectMake(self.txtDescription.frame.origin.x, self.txtDescription.frame.origin.y + self.txtDescription.bounds.size.height + 5, self.txtDescription.bounds.size.width, 30)];
+    [self.txtReceiverPhone setKeyboardType:UIKeyboardTypeNumberPad];
     [self setTextFieldAttr:self.txtReceiverPhone withFont:13 withPlaceHolder:@"Receiver's Phone #"];
     [self.view addSubview:self.txtReceiverPhone];
     

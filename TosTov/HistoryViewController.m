@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSArray *responseData;
 
 
+
 @end
 
 @implementation HistoryViewController
@@ -33,19 +34,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.arrprogressContent = [[NSMutableArray alloc]init];
-    
+    self.arrCompleteContent = [[NSMutableArray alloc]init];
     // Force navigation bar not to hide any top view
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
+    
  
-    self.arrCompleteContent = [[NSMutableArray alloc]initWithObjects:
-                        @{@"status":@"Completed",@"place":@"AEON MALL", @"date":@"22 Feb, 10:10",@"isRated":@"no"},
-                       @{@"status":@"Canceled",@"place":@"AEON MALL", @"date":@"22 Feb, 09:10",@"isRated":@"no"},
-                       @{@"status":@"Completed",@"place":@"PSAR TMEY", @"date":@"19 Feb, 10:10",@"isRated":@"no"},
-                       @{@"status":@"Completed",@"place":@"HOME", @"date":@"19 Feb, 10:45",@"isRated":@"yes"},
-                       nil];
+//    self.arrCompleteContent = [[NSMutableArray alloc]initWithObjects:
+//                        @{@"status":@"Completed",@"place":@"AEON MALL", @"date":@"22 Feb, 10:10",@"isRated":@"no"},
+//                       @{@"status":@"Canceled",@"place":@"AEON MALL", @"date":@"22 Feb, 09:10",@"isRated":@"no"},
+//                       @{@"status":@"Completed",@"place":@"PSAR TMEY", @"date":@"19 Feb, 10:10",@"isRated":@"no"},
+//                       @{@"status":@"Completed",@"place":@"HOME", @"date":@"19 Feb, 10:45",@"isRated":@"yes"},
+//                       nil];
 //    self.arrprogressContent = [[NSMutableArray alloc]initWithObjects:@{@"status":@"Finding Driver",@"place":@"AEON MALL", @"date":@"22 Feb, 10:10"},
 //                            @{@"status":@"In Progress",@"place":@"AEON MALL", @"date":@"22 Feb, 09:10"},
 //                            nil];
@@ -54,6 +56,10 @@
     [self getAllList];
 
 }
+
+//- (void)viewWillAppear:(BOOL)animated{
+//    [self getAllList];
+//}
 
                                         /** Functionality **/
 
@@ -73,6 +79,8 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable) {
     }
     else{
+        self.arrprogressContent = [[NSMutableArray alloc]init];
+        self.arrCompleteContent = [[NSMutableArray alloc]init];
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
         [parameters setObject:[[MyManager sharedManager]userId]  forKey:@"userId"];
         WSGetAllList *getAllListService = [[WSGetAllList alloc]init];
@@ -83,12 +91,17 @@
             NSArray *arr = [[[NSDictionary alloc]initWithDictionary:result]objectForKey:@"responseData"];
             
             for (NSDictionary *tempDic in arr) {
-                if([[tempDic objectForKey:@"status"] isEqualToString:@"0"])
-                    [self.arrprogressContent addObject:tempDic];
+                if([[tempDic objectForKey:@"status"] isEqualToString:@"0"]){
+                   [self.arrprogressContent addObject:tempDic];
+                }else{
+                    [self.arrCompleteContent addObject:tempDic];
+                }
             }
             NSLog(@"progress list is: %@",self.arrprogressContent);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.progressTable reloadData];
+                [self.completeTable reloadData];
+                NSLog(@"arrComplete is : %@",self.arrCompleteContent);
             });
         };
         getAllListService.onError = ^(id contr, id result){
@@ -121,15 +134,15 @@
 //    }
 //}
 
--(void)reloadData{
-    
+-(void)reloadTrip{
+    [self getAllList];
 }
 
                                         /** View Decoration **/
 -(void)addComponents{
     
     UIImage *refreshIcon = [[UIImage imageNamed:@"RefreshIcon.png"] imageWithRenderingMode: UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:refreshIcon style:UIBarButtonItemStylePlain target:self action:@selector(reloadData)];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:refreshIcon style:UIBarButtonItemStylePlain target:self action:@selector(reloadTrip)];
     self.navigationItem.rightBarButtonItem = barButtonItem;
 
     // add segment controls
@@ -143,15 +156,18 @@
     
     self.navigationItem.titleView = self.btnSegment;
     
+    
     // add complete table
-    self.completeTable= [[UITableView alloc]initWithFrame:self.view.bounds];
+    //self.completeTable= [[UITableView alloc]initWithFrame:self.view.bounds];
+    self.completeTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-120)];
     self.completeTable.dataSource = self;
     self.completeTable.delegate = self;
     self.completeTable.tableFooterView = [[UIView alloc]init];
     [self.view addSubview:self.completeTable];
     
     // add progress table
-    self.progressTable = [[UITableView alloc]initWithFrame:self.view.bounds];
+    //self.progressTable = [[UITableView alloc]initWithFrame:self.view.bounds];
+    self.progressTable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-120)];
     self.progressTable.dataSource = self;
     self.progressTable.delegate = self;
     self.progressTable.tableFooterView = [[UIView alloc]init];
@@ -212,9 +228,16 @@
         
     }
     else {
-        cell.textLabel.text = [[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"status"];
-        cell.detailTextLabel.text = [[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"place"];
-        lblDate.text = [[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"date"];
+        //cell.textLabel.text = [[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"status"];
+        cell.textLabel.text = @"Completed";
+        cell.detailTextLabel.text = [[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"desText"];
+        //lblDate.text = [[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"date"];
+        NSString *showDate = [MyUtils getFormatDateWithString:[[self.arrCompleteContent objectAtIndex:indexPath.row] objectForKey:@"tripDate"]];
+        if (showDate == nil) {
+            lblDate.text = @"";
+        }else{
+            lblDate.text = showDate;
+        }
         [cell.contentView addSubview:lblDate];
     }
     return cell;

@@ -26,7 +26,7 @@
 @property (nonatomic, strong) UIButton *btnCancel;
 @property (nonatomic, strong) UIButton *btnMessage;
 @property (nonatomic, strong) UIButton *btnCall;
-
+@property (nonatomic, strong) UILabel *lblDistance;
 
 @end
 
@@ -78,6 +78,13 @@
     self.desMark.iconView = pinDes;
     self.desMark.map = self.mapView;
     self.txtDesc.text = [self.tripContent objectForKey:@"desText"];
+    
+   
+    CLLocation *originCL = [[CLLocation alloc]initWithLatitude:origin.latitude longitude:origin.longitude];
+    CLLocation *desCL = [[CLLocation alloc]initWithLatitude:des.latitude longitude:des.longitude];
+    float distance = [originCL distanceFromLocation:desCL]/1000;
+    self.lblDistance.text = [NSString stringWithFormat:@"Distance (%0.2f km)",distance];
+    
     
 }
 
@@ -205,10 +212,10 @@
     [self.view addSubview:self.footerView];
     
     // add label distance
-    UILabel *lblDistance = [[UILabel alloc]initWithFrame:CGRectMake(3, 5, self.view.bounds.size.width / 3, 10)];
-    lblDistance.font = [UIFont systemFontOfSize:12];
-    lblDistance.text = @"Distance (2.2 km)";
-    [self.footerView addSubview:lblDistance];
+    self.lblDistance = [[UILabel alloc]initWithFrame:CGRectMake(3, 5, self.view.bounds.size.width / 2, 10)];
+    self.lblDistance.font = [UIFont systemFontOfSize:12];
+    //lblDistance.text = @"Distance (2.2 km)";
+    [self.footerView addSubview:self.lblDistance];
     
     // add label price
     NSString *priceStr = @"Price 8000R";

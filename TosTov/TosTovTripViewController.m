@@ -33,7 +33,8 @@
 @property (nonatomic, strong) GMSMarker *desMark;
 @property (nonatomic) CLLocationCoordinate2D originCoordinate;
 @property (nonatomic) CLLocationCoordinate2D desCoordinate;
-@property (nonatomic , strong) GMSPolyline *polyline;
+@property (nonatomic, strong) GMSPolyline *polyline;
+@property (nonatomic, strong) UILabel *lblDistance;
 
 
 @end
@@ -309,6 +310,7 @@
                 isOrigin = true;
             }
             if(![self.txtOrigin.text isEqualToString:@""] && ![self.txtDesc.text isEqualToString:@""]){
+                
                 [self drawRouteLine];
             }
             
@@ -384,6 +386,13 @@
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"erro: %@",error);
+}
+
+-(void)showDistance{
+    CLLocation *origin = [[CLLocation alloc]initWithLatitude:self.originCoordinate.latitude longitude:self.originCoordinate.longitude];
+    CLLocation *des = [[CLLocation alloc]initWithLatitude:self.desCoordinate.latitude longitude:self.desCoordinate.longitude];
+    float distance = [origin distanceFromLocation:des]/1000;
+    self.lblDistance.text = [NSString stringWithFormat:@"Distance (%0.2f km)",distance];
 }
 
                                     /** View Decoration **/
@@ -483,10 +492,11 @@
     [self.view addSubview:self.footerPayment];
     
     // add label distance
-    UILabel *lblDistance = [[UILabel alloc]initWithFrame:CGRectMake(3, 5, self.view.bounds.size.width / 3, 10)];
-    lblDistance.font = [UIFont systemFontOfSize:12];
-    lblDistance.text = @"Distance (2.2 km)";
-    [self.footerPayment addSubview:lblDistance];
+    self.lblDistance = [[UILabel alloc]initWithFrame:CGRectMake(3, 5, self.view.bounds.size.width / 2, 10)];
+    self.lblDistance.font = [UIFont systemFontOfSize:12];
+    //self.lblDistance.text = @"Distance (0.0 km)";
+    [self.footerPayment addSubview:self.lblDistance];
+    [self showDistance];
     
     // add label price
     NSString *priceStr = @"Price 8000R";

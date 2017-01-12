@@ -92,6 +92,7 @@
 // Select on moto driver
 -(void)clickOnMoto{
     [self showPayment];
+    
 }
 
 // Select on tuk tuk driver
@@ -113,8 +114,8 @@
     // add label distance
     UILabel *lblDistance = [[UILabel alloc]initWithFrame:CGRectMake(3, 5, self.view.bounds.size.width / 3, 10)];
     lblDistance.font = [UIFont systemFontOfSize:12];
-    lblDistance.text = @"Distance (2.2 km)";
     [self.footerPayment addSubview:lblDistance];
+    
     
     // add label price
     NSString *priceStr = @"Price 8000R";
