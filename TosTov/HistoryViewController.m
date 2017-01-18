@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *arrCompleteContent;
 @property (nonatomic, strong) NSMutableArray *arrprogressContent;
 @property (nonatomic, strong) NSArray *responseData;
-
+@property (nonatomic, strong) UIActivityIndicatorView *spinner;
 
 
 @end
@@ -79,6 +79,9 @@
     if ([[Reachability reachabilityForInternetConnection]currentReachabilityStatus]==NotReachable) {
     }
     else{
+        [self.spinner startAnimating];
+        [self.view addSubview:self.spinner];
+        
         self.arrprogressContent = [[NSMutableArray alloc]init];
         self.arrCompleteContent = [[NSMutableArray alloc]init];
         NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
@@ -102,10 +105,11 @@
                 [self.progressTable reloadData];
                 [self.completeTable reloadData];
                 NSLog(@"arrComplete is : %@",self.arrCompleteContent);
+                [self.spinner removeFromSuperview];
             });
         };
         getAllListService.onError = ^(id contr, id result){
-            
+            [self.spinner removeFromSuperview];
         };
         [getAllListService callRequest];
     }
@@ -140,6 +144,11 @@
 
                                         /** View Decoration **/
 -(void)addComponents{
+    
+    // add spinner
+    self.spinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2-25,self.view.frame.size.height/2-25,50,50)];
+    
+    self.spinner.color = [UIColor redColor];
     
     UIImage *refreshIcon = [[UIImage imageNamed:@"RefreshIcon.png"] imageWithRenderingMode: UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:refreshIcon style:UIBarButtonItemStylePlain target:self action:@selector(reloadTrip)];
